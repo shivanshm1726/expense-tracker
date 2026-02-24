@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { registerUser } from '../services/api'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { FiArrowRight } from 'react-icons/fi'
+import { registerUser } from '../services/api'
 
 function Register() {
   const [name, setName] = useState('')
@@ -9,73 +10,80 @@ function Register() {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const handleRegister = async (e) => {
-    e.preventDefault()
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      navigate('/dashboard')
+    }
+  }, [navigate])
+
+  const handleRegister = async (event) => {
+    event.preventDefault()
     try {
-      const res = await registerUser({ name, email, password })
-      toast.success(res.data.message)
+      const response = await registerUser({ name, email, password })
+      toast.success(response.data.message || 'Registration successful')
       navigate('/login')
-    } catch (err) {
-      toast.error(err.response?.data?.message || 'Registration failed!')
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Registration failed')
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-indigo-600 mb-2">
-          💰 Expense Tracker
-        </h2>
-        <p className="text-center text-gray-500 mb-6">Create a new account</p>
+    <div className="min-h-screen px-4 flex items-center justify-center bg-slate-950 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(99,102,241,0.35),_transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(16,185,129,0.35),_transparent_35%)]" />
 
-        <form onSubmit={handleRegister} className="space-y-4">
+      <div className="relative w-full max-w-md backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-8 shadow-2xl">
+        <p className="text-xs tracking-[0.2em] uppercase text-violet-200">Get Started</p>
+        <h1 className="text-3xl font-bold text-white mt-2">Create Account</h1>
+        <p className="text-sm text-slate-200 mt-1">Build your personal money dashboard in minutes.</p>
+
+        <form onSubmit={handleRegister} className="space-y-4 mt-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <label className="block text-sm text-slate-200 mb-1">Full Name</label>
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(event) => setName(event.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="John Doe"
+              placeholder="Alex Smith"
+              className="w-full rounded-xl bg-white/15 border border-white/20 text-white placeholder:text-slate-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm text-slate-200 mb-1">Email</label>
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              placeholder="you@email.com"
+              placeholder="you@example.com"
+              className="w-full rounded-xl bg-white/15 border border-white/20 text-white placeholder:text-slate-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-sm text-slate-200 mb-1">Password</label>
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="••••••••"
+              className="w-full rounded-xl bg-white/15 border border-white/20 text-white placeholder:text-slate-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-400"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition font-semibold"
+            className="w-full rounded-xl bg-violet-500 text-white py-2.5 font-semibold hover:bg-violet-600 transition flex items-center justify-center gap-2"
           >
-            Register
+            Register <FiArrowRight size={16} />
           </button>
         </form>
 
-        <p className="text-center text-gray-500 mt-4 text-sm">
+        <p className="text-sm text-slate-200 mt-6 text-center">
           Already have an account?{' '}
-          <Link to="/login" className="text-indigo-600 hover:underline font-medium">
+          <Link to="/login" className="text-violet-300 hover:text-violet-200 font-semibold">
             Login
           </Link>
         </p>

@@ -1,23 +1,22 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: expense-tracker-mysql
+  postgres:
+    image: postgres:15-alpine
+    container_name: expense-tracker-postgres
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: expense_tracker_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      POSTGRES_DB: expense_tracker_db
+      POSTGRES_USER: expense_user
+      POSTGRES_PASSWORD: expense_pass
     ports:
-      - "3306:3306"
+      - "5432:5432"
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD-SHELL", "pg_isready -U expense_user -d expense_tracker_db"]
       interval: 10s
       timeout: 5s
       retries: 5
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
 
   backend:
     build:
@@ -26,13 +25,13 @@ services:
     image: expense-tracker-backend:local
     container_name: expense-tracker-backend
     depends_on:
-      mysql:
+      postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: jdbc:mysql://mysql:3306/expense_tracker_db?createDatabaseIfNotExist=true
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: root
-      HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+      DATABASE_URL: jdbc:postgresql://postgres:5432/expense_tracker_db
+      DATABASE_USERNAME: expense_user
+      DATABASE_PASSWORD: expense_pass
+      HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       FRONTEND_URL: http://localhost:5173
       PORT: 8080
     ports:
@@ -40,4 +39,4 @@ services:
     restart: on-failure
 
 volumes:
-  mysql-data:
+  postgres-data:
