@@ -1,4 +1,4 @@
-# 💰 Expense Tracker — College Project
+# Expense Tracker 
 
 A simple full-stack Expense Tracker built with **Spring Boot** + **React** + **MySQL**.
 
