@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: expense-tracker-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: expense_tracker_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: expense-tracker-backend:local
+    container_name: expense-tracker-backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: jdbc:mysql://mysql:3306/expense_tracker_db?createDatabaseIfNotExist=true
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: root
+      HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+      FRONTEND_URL: http://localhost:5173
+      PORT: 8080
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
+volumes:
+  mysql-data:
