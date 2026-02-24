@@ -1,3 +1,29 @@
+# Features
+
+- Register / Login — manage an account and secure your data.
+- Dashboard — glance at monthly charts and summary cards (income vs expense, totals).
+- Add Expense — create records with title, amount, category, date, linked to your account.
+- Add Income — record income with title, amount, source, date.
+- Budgets — set monthly spending limits for a user/month.
+- Recurring Expenses — schedule repeating payments (frequency, next due date, active toggle).
+- Reports — aggregated category/source summaries and monthly totals; exportable.
+- Tables & Charts — sortable tables and interactive charts; filter by date.
+
+Usage (very short)
+
+1. Register → Login.
+2. Dashboard for quick overview.
+3. Expenses → New Expense → fill fields → Save.
+4. Income → New Income → fill fields → Save.
+5. Budgets → Add Budget → set Month/Year/Limit → Save.
+6. Recurring → Add → set Title/Amount/Category/Frequency/NextDueDate → Activate.
+7. Reports → choose range/filters → export if needed.
+
+How data is stored
+
+- Database: PostgreSQL (default connection: localhost:5432, db: `expense_tracker_db`).
+
+That's it — use pages in order: Register → Login → Dashboard → Expenses/Income/Budgets/Recurring → Reports.
 # Expense Tracker 
 
 A simple full-stack Expense Tracker built with **Spring Boot** + **React** + **MySQL**.
