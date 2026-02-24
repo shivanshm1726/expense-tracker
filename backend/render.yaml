@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: expense-tracker-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PORT
+        value: 8080
