@@ -86,7 +86,3 @@ Frontend runs at: **http://localhost:5173**
 - ✅ Clean, Modern UI
 
 ---
-- **Render free tier** spins down after 15 min of inactivity. The first request after idle takes ~30–60 seconds.
-- **Vite environment variables** must start with `VITE_` to be exposed to the frontend.
-- If you change `VITE_API_URL` on Netlify, you must **re-trigger a deploy** (Deploys → Trigger Deploy).
-- Make sure your MySQL cloud provider allows connections from Render's IPs.
