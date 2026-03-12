@@ -4,6 +4,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
+    plan: free
     envVars:
       - key: DATABASE_URL
         sync: false
