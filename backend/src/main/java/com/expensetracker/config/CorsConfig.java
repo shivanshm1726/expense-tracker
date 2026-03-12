@@ -20,7 +20,13 @@ public class CorsConfig {
     @Primary
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList(frontendUrl, "http://localhost:5173"));
+
+        // Support exact frontend URL, localhost, and all Vercel preview deployments
+        config.setAllowedOriginPatterns(Arrays.asList(
+            frontendUrl,
+            "http://localhost:*",
+            "https://*.vercel.app"
+        ));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowCredentials(true);
