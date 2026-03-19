@@ -1,0 +1,72 @@
+Using Java: openjdk version "21.0.10" 2026-01-20
+Checking PostgreSQL database...
+Database 'expense_tracker_db' already exists.
+Building backend...
+Starting backend on http://localhost:8080 ...
+Waiting for backend to start...
+.
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-03-19T22:48:33.276+05:30  INFO 22298 --- [           main] c.e.ExpenseTrackerApplication            : Starting ExpenseTrackerApplication v1.0.0 using Java 21.0.10 with PID 22298 (/Users/shivanshmishra/Desktop/projects/ExpenseTracker/backend/target/expense-tracker-1.0.0.jar started by shivanshmishra in /Users/shivanshmishra/Desktop/projects/ExpenseTracker/backend)
+2026-03-19T22:48:33.277+05:30  INFO 22298 --- [           main] c.e.ExpenseTrackerApplication            : No active profile set, falling back to 1 default profile: "default"
+2026-03-19T22:48:33.579+05:30  INFO 22298 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-19T22:48:33.604+05:30  INFO 22298 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 5 JPA repository interfaces.
+2026-03-19T22:48:33.819+05:30  INFO 22298 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-03-19T22:48:33.822+05:30  INFO 22298 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-19T22:48:33.822+05:30  INFO 22298 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2026-03-19T22:48:33.834+05:30  INFO 22298 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-03-19T22:48:33.834+05:30  INFO 22298 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 529 ms
+2026-03-19T22:48:33.895+05:30  INFO 22298 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-19T22:48:33.920+05:30  INFO 22298 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-03-19T22:48:33.931+05:30  INFO 22298 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-03-19T22:48:34.027+05:30  INFO 22298 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-19T22:48:34.052+05:30  INFO 22298 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-19T22:48:34.791+05:30  INFO 22298 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6060146b
+2026-03-19T22:48:34.793+05:30  INFO 22298 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-19T22:48:34.841+05:30  WARN 22298 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+.2026-03-19T22:48:35.313+05:30  INFO 22298 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-19T22:48:35.360+05:30  WARN 22298 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2026-03-19T22:48:35.361+05:30  WARN 22298 --- [           main] o.h.engine.jdbc.spi.SqlExceptionHelper   : constraint "uk5aagwikbsef79m2wkkjp0v2cn" of relation "budgets" does not exist, skipping
+2026-03-19T22:48:35.412+05:30  INFO 22298 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-19T22:48:35.596+05:30  INFO 22298 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-19T22:48:36.167+05:30  WARN 22298 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-19T22:48:36.173+05:30  WARN 22298 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0e0495ca-398d-4726-b40e-9ba979f9f6d7
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-03-19T22:48:36.284+05:30  INFO 22298 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@669f2128, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39badc71, org.springframework.security.web.context.SecurityContextHolderFilter@4b1a7b39, org.springframework.security.web.header.HeaderWriterFilter@5d4f35cb, org.springframework.web.filter.CorsFilter@6048e171, org.springframework.security.web.authentication.logout.LogoutFilter@2e6c69f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a63c618, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10009505, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75eed00f, org.springframework.security.web.session.SessionManagementFilter@3c2e7a83, org.springframework.security.web.access.ExceptionTranslationFilter@28e9f6b8, org.springframework.security.web.access.intercept.AuthorizationFilter@4b628301]
+2026-03-19T22:48:36.360+05:30  INFO 22298 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-03-19T22:48:36.365+05:30  INFO 22298 --- [           main] c.e.ExpenseTrackerApplication            : Started ExpenseTrackerApplication in 3.259 seconds (process running for 3.492)
+2026-03-19T22:48:36.930+05:30  INFO 22298 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-19T22:48:36.930+05:30  INFO 22298 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-03-19T22:48:36.931+05:30  INFO 22298 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-03-19T22:48:36.937+05:30  WARN 22298 --- [nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+............................
+Starting frontend on http://localhost:5173 ...
+
+═══════════════════════════════════════════
+  ExpenseTracker is running!
+  Frontend : http://localhost:5173
+  Backend  : http://localhost:8080/api
+  Database : PostgreSQL @ localhost:5432
+
+  Press Ctrl+C to stop all services.
+═══════════════════════════════════════════
+
+> expense-tracker-frontend@1.0.0 dev
+> vite
+
+Port 5173 is in use, trying another one...
+
+  VITE v5.4.21  ready in 293 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose

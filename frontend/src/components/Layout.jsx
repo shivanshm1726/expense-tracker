@@ -31,23 +31,21 @@ function Layout() {
   const pageTitle = routeTitles[location.pathname] || 'Money Manager'
 
   return (
-    <div className="min-h-screen bg-[var(--bg-color)] text-[var(--text-color)] transition-colors duration-300">
+    <div className="min-h-screen bg-[#080808] text-[#f0f0f0]">
       <Sidebar user={user} isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
-      <div className="lg:pl-72">
-        <header className="sticky top-0 z-20 backdrop-blur-xl bg-[var(--bg-color)]/80 border-b border-[var(--border-color)]">
-          <div className="px-4 md:px-8 py-4 flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setSidebarOpen(true)}
-              className="lg:hidden h-10 w-10 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] flex items-center justify-center"
-            >
-              <FiMenu size={18} />
-            </button>
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted-text)]">Overview</p>
-              <h2 className="text-xl font-semibold">{pageTitle}</h2>
-            </div>
+      <div className="lg:pl-64">
+        <header className="sticky top-0 z-20 h-14 bg-[#080808]/90 backdrop-blur-xl border-b border-[#1a1a1a] flex items-center px-4 md:px-8 gap-4">
+          <button
+            type="button"
+            onClick={() => setSidebarOpen(true)}
+            className="lg:hidden h-8 w-8 rounded-lg border border-[#1e1e1e] bg-[#111] flex items-center justify-center text-gray-500 hover:text-white transition-colors"
+          >
+            <FiMenu size={16} />
+          </button>
+          <div>
+            <p className="text-xs text-gray-700 uppercase tracking-widest">Overview</p>
+            <h2 className="text-sm font-semibold text-white">{pageTitle}</h2>
           </div>
         </header>
 

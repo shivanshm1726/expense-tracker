@@ -2,46 +2,122 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design Tokens ── */
 :root {
-  --bg-color: #edf3f6;
-  --surface-bg: #e2ebf0;
-  --card-bg: #ffffff;
-  --text-color: #0f172a;
-  --muted-text: #475569;
-  --border-color: #dbe5ec;
+  --bg-color: #080808;
+  --surface-bg: #111111;
+  --card-bg: #141414;
+  --text-color: #f0f0f0;
+  --muted-text: #5a5a5a;
+  --border-color: #1e1e1e;
+  --green: #22c55e;
+  --green-dim: rgba(34, 197, 94, 0.1);
+  --green-glow: rgba(34, 197, 94, 0.3);
 }
 
-.dark {
-  --bg-color: #0b1220;
-  --surface-bg: #111b2f;
-  --card-bg: #121e34;
-  --text-color: #f8fafc;
-  --muted-text: #94a3b8;
-  --border-color: #22304a;
-}
+/* Always dark */
+html { color-scheme: dark; scroll-behavior: smooth; }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body,
-#root {
-  min-height: 100%;
-}
+html, body, #root { min-height: 100%; }
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 35%),
-    radial-gradient(circle at 10% 80%, rgba(139, 92, 246, 0.16), transparent 30%), var(--bg-color);
+  background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 250ms ease, color 250ms ease;
 }
 
-input,
-select,
-textarea,
-button {
-  font: inherit;
+input, select, textarea, button { font: inherit; }
+
+/* ── Animated Gradient Heading ── */
+.gradient-text {
+  background: linear-gradient(135deg, #22c55e 0%, #4ade80 60%, #22c55e 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% center; }
+  50%       { background-position: 100% center; }
+}
+
+/* ── Animation Delays ── */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ── Landing Feature Cards ── */
+.landing-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.landing-card:hover {
+  background: var(--green-dim);
+  border-color: rgba(34, 197, 94, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px var(--green-glow);
+}
+
+/* ── Marquee Fades ── */
+.marquee-gradient-left {
+  background: linear-gradient(to right, #080808 0%, transparent 100%);
+}
+.marquee-gradient-right {
+  background: linear-gradient(to left, #080808 0%, transparent 100%);
+}
+
+/* ── Animated Glow Border ── */
+.glow-border { position: relative; }
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #22c55e, #4ade80, #22c55e);
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Grid Dot Background (auth pages) ── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(34, 197, 94, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Scan Line (login panel decoration) ── */
+@keyframes scanLine {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+.scan-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.5), transparent);
+  animation: scanLine 5s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Sidebar Active State ── */
+.nav-active {
+  background: var(--green-dim) !important;
+  color: #22c55e !important;
+  border-left: 2px solid #22c55e;
 }

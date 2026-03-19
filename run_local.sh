@@ -6,8 +6,8 @@ set -euo pipefail
 # Uses local PostgreSQL (Homebrew) + Spring Boot + Vite
 # ──────────────────────────────────────────────
 
-# Use Java 23 (project requires 17+)
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-23.jdk/Contents/Home"
+# Use system default Java
+export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$JAVA_HOME/bin:$PATH"
 echo "Using Java: $(java -version 2>&1 | head -1)"
 
